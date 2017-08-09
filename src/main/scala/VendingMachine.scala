@@ -29,12 +29,12 @@ class repository {
   var numOfSprite = sprite.ProductStock
 
   def inputMoney(): Int = {
-    var bb = scala.io.StdIn.readInt()
-    bb
+    var inputValue = scala.io.StdIn.readInt()
+    inputValue
   }
 
   def moneyCheck(bb: Int): Int = {
-    var m1 = bb
+    var isMoney = bb
 
     def inputCheck(m1: Any) = m1 match {
       case 1 => println(" \n돈을 먼저 넣어주세요.")
@@ -43,8 +43,8 @@ class repository {
       case _ => println("입력 오류가 발생하였습니다.")
     }
 
-    inputCheck(m1)
-    m1
+    inputCheck(isMoney)
+    isMoney
   }
 
   def showMenu(m: Int): Unit = {
@@ -60,8 +60,8 @@ class repository {
 
     if (input < coke.ProductPrice) {
 
-      println("(메뉴) 1. 콜라 : ( ), 2. 사이다 : ( )\n")
-      println("(재고) 1. 콜라 : "+ numOfCoke + "개,   2. 사이다 : " + numOfSprite + "개\n")
+      println("(메뉴) 1. " + nameOfCoke + " : ( ), 2. " + nameOfSprite + " : ( )\n")
+      println("(재고) 1. " + nameOfCoke + ": "+ numOfCoke + "개,   2. " + nameOfSprite + " : " + numOfSprite + "개\n")
       println("-------------------------------------------")
       println("금액이 모자라 선택 할 수 있는 메뉴가 없습니다.\n")
       println("돈을 더 넣어주세요.")
@@ -76,16 +76,16 @@ class repository {
 
       if (input >= coke.ProductPrice && input < sprite.ProductPrice) {
 
-        println("(메뉴) 1. 콜라 : (*), 2. 사이다 : ( )\n")
-        println("(재고) 1. 콜라 : "+ numOfCoke + "개,   2. 사이다 : " + numOfSprite + "개\n")
+        println("(메뉴) 1. " + nameOfCoke + " : (*), 2. " + nameOfSprite + " : ( )\n")
+        println("(재고) 1. " + nameOfCoke + ": "+ numOfCoke + "개,   2. " + nameOfSprite + " : " + numOfSprite + "개\n")
         println("-------------------------------------------")
         println("메뉴를 선택해 주세요.")
       }
 
       else if (input >= sprite.ProductPrice) {
 
-        println("(메뉴) 1. 콜라 : (*), 2. 사이다 : (*)\n")
-        println("(재고) 1. 콜라 : "+ numOfCoke + "개,   2. 사이다 : " + numOfSprite + "개\n")
+        println("(메뉴) 1. " + nameOfCoke + " : (*), 2. " + nameOfSprite + " : (*)\n")
+        println("(재고) 1. " + nameOfCoke + ": "+ numOfCoke + "개,   2. " + nameOfSprite + " : " + numOfSprite + "개\n")
         println("-------------------------------------------")
         println("메뉴를 선택해 주세요.")
 
@@ -115,7 +115,7 @@ class repository {
 
       case 2 => isEnough(input, sprite.ProductName, sprite.ProductStock, sprite.ProductPrice)
 
-      case _ => println("잘못 입력 하셨습니다.111")
+      case _ => println("잘못 입력 하셨습니다.")
 
     }
 
@@ -126,6 +126,9 @@ class repository {
       var nameOfSelection = name
       var numOfSelection = num
       var priceOfSelection = price
+
+      if (nameOfSelection == nameOfCoke) numOfSelection = numOfCoke
+      else if (nameOfSelection == nameOfSprite) numOfSelection = numOfSprite
 
       if (input2 < priceOfSelection) {
         println("\n투입한 금액이 부족하여 선택 할 수 없습니다.\n")
@@ -186,7 +189,6 @@ class repository {
 
     }
 
-
   }
 
 
@@ -200,7 +202,6 @@ class repository {
 
   }
 
-
 }
 
 
@@ -209,6 +210,10 @@ object VendingMachine {
   def main(args: Array[String]): Unit = {
 
     val Repository = new repository
+
+
+    val nameOfCoke = Repository.coke.ProductName
+    val nameOfSprite = Repository.sprite.ProductName
 
     val priceOfCoke = Repository.coke.ProductPrice
     val priceOfSprite = Repository.sprite.ProductPrice
