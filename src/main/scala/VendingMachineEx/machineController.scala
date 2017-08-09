@@ -155,7 +155,8 @@ class machineController {
 
       if (input2 < priceOfSelection) {
         println("\n투입한 금액이 부족하여 선택 할 수 없습니다.\n")
-        showMenu(input2)
+        addMoney(input2)
+        //showMenu(input2)
       }
 
       else {
@@ -176,7 +177,6 @@ class machineController {
           stockCheck(numOfCoke, numOfSprite)
 
           println("결제가 정상적으로 처리되었습니다.")
-          println("남은 잔액은 " + output + "원 입니다.\n")
           changeAsk(output)
 
         }
@@ -187,6 +187,41 @@ class machineController {
     matchMenu(select)
 
 
+
+    // 금액 추가 확인
+
+    def addMoney (passed : Int): Unit ={
+
+      var passedMoney = passed
+
+      println("돈을 추가 하시겠습니까? (Y/N)")
+
+      val addSelect = scala.io.StdIn.readLine
+      addAsk(addSelect)
+
+      def addAsk (addSelect : String): Any = addSelect match {
+
+        case "y" => printf("돈을 추가해주세요.\n")
+
+                    val addMoney = scala.io.StdIn.readInt
+                    passedMoney = passedMoney + addMoney
+
+                    showMenu(passedMoney)
+
+        case "n" => changeAsk(passedMoney)
+
+        case _ => println("잘못 입력하셨습니다.")
+      }
+
+
+
+
+
+
+
+
+    }
+
     // 잔돈 반환 처리
 
     def changeAsk(output: Int): Unit = {
@@ -195,6 +230,7 @@ class machineController {
 
       if (changeMoney > 0) {
 
+        println("남은 잔액은 " + output + "원 입니다.\n")
         println("잔돈을 반환 하시겠습니까?(Y/N)")
         println("-------------------------------------------\n")
 
