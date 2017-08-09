@@ -1,4 +1,5 @@
 import scala.io.StdIn
+import scala.util.Random
 
 
 /* 상품 클래스 */
@@ -20,8 +21,13 @@ case class menu(ProductName: String, ProductStock: Int, ProductPrice: Int) // �
 
 class repository {
 
-  var coke = menu("콜라", 3, 1000)
-  var sprite = menu("사이다", 5, 1500)
+  val rand = Random
+
+  var c = rand.nextInt(20)
+  var s = rand.nextInt(20)
+
+  var coke = menu("콜라", c, 1000)
+  var sprite = menu("사이다", s, 1500)
 
   var nameOfCoke = coke.ProductName
   var nameOfSprite = sprite.ProductName
