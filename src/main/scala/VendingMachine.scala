@@ -29,6 +29,22 @@ class repository {
   var numOfCoke = coke.ProductStock
   var numOfSprite = sprite.ProductStock
 
+  var priceOfCoke = coke.ProductPrice
+  var priceOfSprite = sprite.ProductPrice
+
+  def printIntro(): Unit = {
+
+    println("\n-------------------------------------------")
+    println("****** 자판기 프로그램을 시작합니다! ******\n")
+    println("(메뉴) 1.콜라 : " + priceOfCoke + "원, 2.사이다 : " + priceOfSprite + "원\n")
+    println("(재고) 1.콜라 : " + numOfCoke + "개,\t" + "2.사이다 : " + numOfSprite + "개\n")
+    println("*******************************************")
+    println("-------------------------------------------\n")
+
+    println("돈을 넣어주세요.\n")
+
+  }
+
   def inputMoney(): Int = {
     var inputValue = scala.io.StdIn.readInt()
     inputValue
@@ -177,14 +193,12 @@ class repository {
 
 
 
-
     def change(changeSelect: String): Any = changeSelect match {
 
       case "y" => println("판매를 종료합니다. 잔돈 " + output + "원을 가져가세요.")
         output = 0
 
       case "n" => showMenu(output)
-
 
       case _ => "잘못 입력하셨습니다."
 
@@ -213,39 +227,15 @@ object VendingMachine {
     val Repository = new repository
 
 
-    val nameOfCoke = Repository.coke.ProductName
-    val nameOfSprite = Repository.sprite.ProductName
-
-    val priceOfCoke = Repository.coke.ProductPrice
-    val priceOfSprite = Repository.sprite.ProductPrice
-
-    // val numberOfCoke = Repository.numOfCoke
-    //val numberOfSprite = Repository.numOfSprite
-
-
-    val ON = "on"
-    val OFF = "off"
-    var power = ON
-
-
-    while (power == "on") {
+    while (true) {
 
 
       val numberOfCoke = Repository.numOfCoke
       val numberOfSprite = Repository.numOfSprite
 
-      println("\n-------------------------------------------")
-      println("****** 자판기 프로그램을 시작합니다! ******\n")
-      println("(메뉴) 1.콜라 : " + priceOfCoke + "원, 2.사이다 : " + priceOfSprite + "원\n")
-      println("(재고) 1.콜라 : " + numberOfCoke + "개,\t" + "2.사이다 : " + numberOfSprite + "개\n")
-      println("*******************************************")
-      println("-------------------------------------------\n")
+      Repository.printIntro() // 시작 화면 출력
 
-      println("돈을 넣어주세요.\n")
-
-
-      // 돈을 넣지않고 메뉴 선택하면 경고
-      var money = Repository.moneyCheck(Repository.inputMoney())
+      var money = Repository.moneyCheck(Repository.inputMoney()) // 돈을 넣지않고 메뉴 선택하면 경고
 
 
     }
