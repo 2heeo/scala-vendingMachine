@@ -85,7 +85,7 @@ class repository {
       println("-------------------------------------------")
 
       var rest = scala.io.StdIn.readInt() //추가로 받는 돈
-      showMenu(input + rest)
+      showMenu(input + rest) // 현재 투입되어있는 돈에 추가
 
     }
 
@@ -116,14 +116,13 @@ class repository {
 
   }
 
+
+
   def purchase(x: Int, y: Int) { //x : 메뉴 번호, y: 받은돈
 
     var select = x // 선택한 메뉴
     var input = y // 받은 돈
     var output = 0 // 잔돈
-
-
-    //matchMenu(select)
 
 
     def matchMenu(x: Int): Any = x match {
@@ -192,7 +191,6 @@ class repository {
     }
 
 
-
     def change(changeSelect: String): Any = changeSelect match {
 
       case "y" => println("판매를 종료합니다. 잔돈 " + output + "원을 가져가세요.")
@@ -226,17 +224,11 @@ object VendingMachine {
 
     val Repository = new repository
 
-
     while (true) {
-
-
-      val numberOfCoke = Repository.numOfCoke
-      val numberOfSprite = Repository.numOfSprite
 
       Repository.printIntro() // 시작 화면 출력
 
       var money = Repository.moneyCheck(Repository.inputMoney()) // 돈을 넣지않고 메뉴 선택하면 경고
-
 
     }
     println("-------------------------------------------")
