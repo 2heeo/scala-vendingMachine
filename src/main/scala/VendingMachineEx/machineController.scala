@@ -12,6 +12,8 @@ class machineController {
   var coke = Product("콜라", randomCoke, 1000)
   var sprite = Product("사이다", randomSprite, 1500)
 
+
+
   var nameOfCoke = coke.ProductName
   var nameOfSprite = sprite.ProductName
 
@@ -57,7 +59,10 @@ class machineController {
   }
 
 
+
+
   // 현재 투입된 돈으로 구매 할 수 있는 상품 출력
+
   def showMenu(m: Int): Unit = {
 
     var input = m // 처음 받은 돈
