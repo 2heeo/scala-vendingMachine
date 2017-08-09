@@ -2,13 +2,13 @@ import scala.io.StdIn
 
 
 /* 상품 클래스 */
-case class menu(name: String, num: Int, price: Int) // 이름, 재고량, 가격
+case class menu(ProductName: String, ProductStock: Int, ProductPrice: Int) // 이름, 재고량, 가격
 
 
 /* 기능 구현
 
  - inputMoney() : 돈 투입
- - moneyCheck() : 메뉴 선택 전에 돈을 투입했는지 확인처리
+ - moneyCheck() : 메뉴 선택 전에 돈을 투입했는지 확인
  - showMenu() : 투입된 돈으로 구입 가능한 메뉴 보여주기
  - perchase() : 물품 구입
  - matchMenu() : 메뉴 선택
@@ -22,11 +22,11 @@ class repository {
   var coke = menu("콜라", 3, 1000)
   var sprite = menu("사이다", 5, 1500)
 
-  var nameOfCoke = coke.name
-  var nameOfSprite = sprite.name
+  var nameOfCoke = coke.ProductName
+  var nameOfSprite = sprite.ProductName
 
-  var numOfCoke = coke.num
-  var numOfSprite = sprite.num
+  var numOfCoke = coke.ProductStock
+  var numOfSprite = sprite.ProductStock
 
   def inputMoney(): Int = {
     var bb = scala.io.StdIn.readInt()
@@ -53,14 +53,16 @@ class repository {
 
     println("-------------------------------------------")
     println("현재 투입된 금액은 총 " + input + "원 입니다.\n")
-    println("* 표시가 된 물품은 선택 가능한 물품입니다.\n")
+    println("* 표시가 된 물품은 선택 가능한 물품입니다.")
+    println("-------------------------------------------\n")
 
     // 최소 구매 금액보다 작은 경우 추가 투입
 
-    if (input < coke.price) {
+    if (input < coke.ProductPrice) {
 
       println("(메뉴) 1. 콜라 : ( ), 2. 사이다 : ( )\n")
       println("(재고) 1. 콜라 : "+ numOfCoke + "개,   2. 사이다 : " + numOfSprite + "개\n")
+      println("-------------------------------------------")
       println("금액이 모자라 선택 할 수 있는 메뉴가 없습니다.\n")
       println("돈을 더 넣어주세요.")
       println("-------------------------------------------")
@@ -72,16 +74,19 @@ class repository {
 
     else {
 
-      if (input >= coke.price && input < sprite.price) {
+      if (input >= coke.ProductPrice && input < sprite.ProductPrice) {
 
-        println("1. 콜라 : (*), 2. 사이다 : ( )\n")
+        println("(메뉴) 1. 콜라 : (*), 2. 사이다 : ( )\n")
+        println("(재고) 1. 콜라 : "+ numOfCoke + "개,   2. 사이다 : " + numOfSprite + "개\n")
+        println("-------------------------------------------")
         println("메뉴를 선택해 주세요.")
-
       }
 
-      else if (input >= sprite.price) {
+      else if (input >= sprite.ProductPrice) {
 
-        println("1. 콜라 : (*), 2. 사이다 : (*) \n")
+        println("(메뉴) 1. 콜라 : (*), 2. 사이다 : (*)\n")
+        println("(재고) 1. 콜라 : "+ numOfCoke + "개,   2. 사이다 : " + numOfSprite + "개\n")
+        println("-------------------------------------------")
         println("메뉴를 선택해 주세요.")
 
       }
@@ -106,9 +111,9 @@ class repository {
 
     def matchMenu(x: Int): Any = x match {
 
-      case 1 => isEnough(input, coke.name, coke.num, coke.price)
+      case 1 => isEnough(input, coke.ProductName, coke.ProductStock, coke.ProductPrice)
 
-      case 2 => isEnough(input, sprite.name, sprite.num, sprite.price)
+      case 2 => isEnough(input, sprite.ProductName, sprite.ProductStock, sprite.ProductPrice)
 
       case _ => println("잘못 입력 하셨습니다.111")
 
@@ -139,8 +144,8 @@ class repository {
 
           output = input2 - priceOfSelection
 
-          if (nameOfSelection == coke.name) numOfCoke = numOfCoke - 1
-          else if (nameOfSelection == sprite.name) numOfSprite = numOfSprite - 1
+          if (nameOfSelection == coke.ProductName) numOfCoke = numOfCoke - 1
+          else if (nameOfSelection == sprite.ProductName) numOfSprite = numOfSprite - 1
 
           stockCheck(numOfCoke, numOfSprite)
 
@@ -165,6 +170,9 @@ class repository {
     else if (output == 0) {
       println("판매를 종료합니다. 안녕히 가세요.")
     }
+
+
+
 
     def change(changeSelect: String): Any = changeSelect match {
 
@@ -202,8 +210,8 @@ object VendingMachine {
 
     val Repository = new repository
 
-    val priceOfCoke = Repository.coke.price
-    val priceOfSprite = Repository.sprite.price
+    val priceOfCoke = Repository.coke.ProductPrice
+    val priceOfSprite = Repository.sprite.ProductPrice
 
     // val numberOfCoke = Repository.numOfCoke
     //val numberOfSprite = Repository.numOfSprite
@@ -227,7 +235,7 @@ object VendingMachine {
       println("*******************************************")
       println("-------------------------------------------\n")
 
-      println("돈을 넣어주세요.")
+      println("돈을 넣어주세요.\n")
 
 
       // 돈을 넣지않고 메뉴 선택하면 경고
