@@ -195,6 +195,7 @@ class machineController {
       var passedMoney = passed
 
       println("돈을 추가 하시겠습니까? (Y/N)")
+      println("-------------------------------------------\n")
 
       val addSelect = scala.io.StdIn.readLine
       addAsk(addSelect)
