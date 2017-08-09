@@ -2,7 +2,7 @@ package VendingMachineEx
 
 import scala.util.Random
 
-class repository {
+class machineController {
 
   val rand = Random
 
@@ -20,8 +20,6 @@ class repository {
 
   var priceOfCoke = coke.ProductPrice
   var priceOfSprite = sprite.ProductPrice
-
-
 
 
   // 처음 시작화면 출력, 돈 투입 시도
@@ -42,7 +40,6 @@ class repository {
   }
 
 
-
   // 투입된 값이 돈인지 메뉴인지 체크
 
   def moneyCheck(bb: Int): Int = {
@@ -58,8 +55,6 @@ class repository {
     inputCheck(isMoney)
     isMoney
   }
-
-
 
 
   // 현재 투입된 돈으로 구매 할 수 있는 상품 출력
@@ -90,7 +85,7 @@ class repository {
     }
 
 
-     // 최소 구매 가능 금액 이상 돈을 투입한 경우, 구매가능 상품 출력
+    // 최소 구매 가능 금액 이상 돈을 투입한 경우, 구매가능 상품 출력
 
     else {
 
@@ -118,7 +113,6 @@ class repository {
     }
 
   }
-
 
 
   // 상품 구매 시도
@@ -178,6 +172,7 @@ class repository {
 
           println("결제가 정상적으로 처리되었습니다.")
           println("남은 잔액은 " + output + "원 입니다.\n")
+          changeAsk(output)
 
         }
       }
@@ -187,38 +182,41 @@ class repository {
     matchMenu(select)
 
 
-
-    if (output > 0) {
-
-      println("잔돈을 반환 하시겠습니까?(Y/N)")
-      println("-------------------------------------------\n")
-
-      val changeSelect = scala.io.StdIn.readLine()
-      change(changeSelect)
-
-    }
-
-    else if (output == 0) {
-      println("판매를 종료합니다. 안녕히 가세요.")
-    }
-
-
-
     // 잔돈 반환 처리
 
-    def change(changeSelect: String): Any = changeSelect match {
+    def changeAsk(output: Int): Unit = {
 
-      case "y" => println("\n판매를 종료합니다. 잔돈 " + output + "원을 가져가세요.")
-        output = 0
+      var changeMoney = output
 
-      case "n" => showMenu(output)
+      if (changeMoney > 0) {
 
-      case _ => "잘못 입력하셨습니다."
+        println("잔돈을 반환 하시겠습니까?(Y/N)")
+        println("-------------------------------------------\n")
 
+        val changeSelect = scala.io.StdIn.readLine()
+        change(changeSelect)
+
+      }
+
+      else if (changeMoney == 0) {
+        println("판매를 종료합니다. 안녕히 가세요.")
+      }
+
+
+      def change(changeSelect: String): Any = changeSelect match {
+
+        case "y" => println("\n판매를 종료합니다. 잔돈 " + changeMoney + "원을 가져가세요.")
+          println("안녕히 가세요.")
+          changeMoney = 0
+
+        case "n" => showMenu(changeMoney)
+
+        case _ => "잘못 입력하셨습니다."
+
+      }
     }
 
   }
-
 
 
   // 재고 처리

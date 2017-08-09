@@ -5,11 +5,11 @@ object VendingMachine {
 
   def main(args: Array[String]): Unit = {
 
-    val Repository = new repository
+    val VendingMachine = new machineController
 
     while (true) {
 
-      Repository.moneyCheck(Repository.inputMoney()) // 돈을 넣지않고 메뉴 선택하면 경고
+      VendingMachine.moneyCheck(VendingMachine .inputMoney()) // 돈을 넣지않고 메뉴 선택하면 경고
     }
   }
 
