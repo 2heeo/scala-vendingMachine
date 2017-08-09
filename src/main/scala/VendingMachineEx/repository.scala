@@ -1,14 +1,16 @@
+package VendingMachineEx
+
 import scala.util.Random
 
 class repository {
 
   val rand = Random
 
-  var c = rand.nextInt(20)
-  var s = rand.nextInt(20)
+  var randomCoke = rand.nextInt(20)
+  var randomSprite = rand.nextInt(20)
 
-  var coke = Product("콜라", c, 1000)
-  var sprite = Product("사이다", s, 1500)
+  var coke = Product("콜라", randomCoke, 1000)
+  var sprite = Product("사이다", randomSprite, 1500)
 
   var nameOfCoke = coke.ProductName
   var nameOfSprite = sprite.ProductName
@@ -19,7 +21,12 @@ class repository {
   var priceOfCoke = coke.ProductPrice
   var priceOfSprite = sprite.ProductPrice
 
-  def printIntro(): Unit = {
+
+
+
+  // 처음 시작화면 출력, 돈 투입 시도
+
+  def inputMoney(): Int = {
 
     println("\n-------------------------------------------")
     println("****** 자판기 프로그램을 시작합니다! ******\n")
@@ -30,12 +37,13 @@ class repository {
 
     println("돈을 넣어주세요.\n")
 
-  }
-
-  def inputMoney(): Int = {
     var inputValue = scala.io.StdIn.readInt()
     inputValue
   }
+
+
+
+  // 투입된 값이 돈인지 메뉴인지 체크
 
   def moneyCheck(bb: Int): Int = {
     var isMoney = bb
@@ -51,6 +59,10 @@ class repository {
     isMoney
   }
 
+
+
+
+  // 현재 투입된 돈으로 구매 할 수 있는 상품 출력
   def showMenu(m: Int): Unit = {
 
     var input = m // 처음 받은 돈
@@ -60,7 +72,8 @@ class repository {
     println("* 표시가 된 물품은 선택 가능한 물품입니다.")
     println("-------------------------------------------\n")
 
-    // 최소 구매 금액보다 작은 경우 추가 투입
+
+    // 최소 구매 가능 금액보다 작은 경우 추가 투입 요구
 
     if (input < coke.ProductPrice) {
 
@@ -75,6 +88,9 @@ class repository {
       showMenu(input + rest) // 현재 투입되어있는 돈에 추가
 
     }
+
+
+     // 최소 구매 가능 금액 이상 돈을 투입한 경우, 구매가능 상품 출력
 
     else {
 
@@ -104,6 +120,9 @@ class repository {
   }
 
 
+
+  // 상품 구매 시도
+
   def purchase(x: Int, y: Int) { //x : 메뉴 번호, y: 받은돈
 
     var select = x // 선택한 메뉴
@@ -121,6 +140,9 @@ class repository {
 
     }
 
+
+    // 최소 구매 가능 금액과 비교
+    // 재고 상태 확인
 
     def isEnough(input: Int, name: String, num: Int, price: Int): Unit = {
 
@@ -164,9 +186,13 @@ class repository {
 
     matchMenu(select)
 
+
+
     if (output > 0) {
 
       println("잔돈을 반환 하시겠습니까?(Y/N)")
+      println("-------------------------------------------\n")
+
       val changeSelect = scala.io.StdIn.readLine()
       change(changeSelect)
 
@@ -177,9 +203,12 @@ class repository {
     }
 
 
+
+    // 잔돈 반환 처리
+
     def change(changeSelect: String): Any = changeSelect match {
 
-      case "y" => println("판매를 종료합니다. 잔돈 " + output + "원을 가져가세요.")
+      case "y" => println("\n판매를 종료합니다. 잔돈 " + output + "원을 가져가세요.")
         output = 0
 
       case "n" => showMenu(output)
@@ -190,6 +219,9 @@ class repository {
 
   }
 
+
+
+  // 재고 처리
 
   def stockCheck(a: Int, b: Int): Unit = {
 
