@@ -10,9 +10,10 @@ case class menu(ProductName: String, ProductStock: Int, ProductPrice: Int) // �
  - inputMoney() : 돈 투입
  - moneyCheck() : 메뉴 선택 전에 돈을 투입했는지 확인
  - showMenu() : 투입된 돈으로 구입 가능한 메뉴 보여주기
- - perchase() : 물품 구입
+ - purchase() : 물품 구입
  - matchMenu() : 메뉴 선택
- - stochCheck() : 재고 처리
+ - isEnough() : 투입된 돈으로 선택한 물건 구매 가능 여부 확인
+ - stockCheck() : 재고 처리
  - change() : 잔돈 반환
 
  */
@@ -94,12 +95,12 @@ class repository {
       println("-------------------------------------------")
 
       var selection = scala.io.StdIn.readInt()
-      perchase(selection, input)
+      purchase(selection, input)
     }
 
   }
 
-  def perchase(x: Int, y: Int) { //x : 메뉴 번호, y: 받은돈
+  def purchase(x: Int, y: Int) { //x : 메뉴 번호, y: 받은돈
 
     var select = x // 선택한 메뉴
     var input = y // 받은 돈
