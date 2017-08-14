@@ -68,7 +68,7 @@ class Test extends Product {
     // 최소 구매 가능 금액 이상 돈을 투입한 경우, 구매가능 상품 출력
     else {
 
-      if (input >= coke.productPrice && input < sprite.productPrice) {
+      if ((input >= coke.productPrice) && (input < sprite.productPrice) && (numOfCoke != 0)) {
 
         println("(메뉴) 1. " + coke.productName + " : (*), 2. " + sprite.productName + " : ( )\n")
         println("(재고) 1. " + coke.productName + ": " + numOfCoke + "개,   2. " + sprite.productName + " : " + numOfSprite + "개\n")
@@ -76,7 +76,7 @@ class Test extends Product {
         println("메뉴를 선택해 주세요.")
       }
 
-      else if (input >= sprite.productPrice) {
+      else if ((input >= sprite.productPrice) && (numOfCoke != 0) && (numOfSprite != 0)) {
 
         println("(메뉴) 1. " + coke.productName + " : (*), 2. " + sprite.productName + " : (*)\n")
         println("(재고) 1. " + coke.productName + ": " + numOfCoke + "개,   2. " + sprite.productName + " : " + numOfSprite + "개\n")
@@ -136,7 +136,7 @@ class Test extends Product {
       else {
         //output = input - priceOfSelection
         stockCheck(nameOfSelection)
-        println("결제가 정상적으로 처리되었습니다.")
+        println("결제가 정상적으로 처리되었습니다.\n")
         changeAsk(input - priceOfSelection)
       }
 
