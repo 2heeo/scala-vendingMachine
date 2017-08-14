@@ -5,13 +5,12 @@ object StartVendingMachine {
 
   def main(args: Array[String]): Unit = {
 
-    val VendingMachine = new MachineController
+    val vendingMachine = new MachineController
 
-    while (true) {
+    vendingMachine.control
 
-      VendingMachine.inputCheck(VendingMachine .inputMoney()) // 돈을 넣지않고 메뉴 선택하면 경고
-    }
   }
+
 }
 
 

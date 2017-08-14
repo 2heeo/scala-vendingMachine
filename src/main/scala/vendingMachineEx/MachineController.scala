@@ -1,12 +1,25 @@
 package vendingMachineEx
 
 
-class MachineController extends Product{
+class MachineController {
 
 
-    // 처음 시작화면 출력, 돈 투입 시도
+  def control: Unit = {
 
-    def inputMoney(): Int = {
+
+    val test = new Test
+
+
+    while (true) {
+
+
+    test.inputCheck(test.inputMoney()) // 처음 시작화면 출력, 돈 투입 시도 후 투입된 값이 돈인지 확인
+
+
+
+      // 처음 시작화면 출력, 돈 투입 시도
+
+      /*   def inputMoney(): Int = {
 
       println("\n-------------------------------------------")
       println("****** 자판기 프로그램을 시작합니다! ******\n")
@@ -19,11 +32,12 @@ class MachineController extends Product{
 
       val inputValue = scala.io.StdIn.readInt()
       inputValue
+
     }
+*/
 
-
-    // 투입된 값이 돈인지 메뉴인지 체크
-
+      // 투입된 값이 돈인지 메뉴인지 체크
+      /*
     def inputCheck(isMoney: Int) = isMoney match {
 
       case 1 => println(" \n돈을 먼저 넣어주세요.")
@@ -39,9 +53,9 @@ class MachineController extends Product{
 
     }
 
-
-    // 현재 투입된 돈으로 구매 할 수 있는 상품 출력
-
+*/
+      // 현재 투입된 돈으로 구매 할 수 있는 상품 출력
+      /*
     def showMenu(input: Int): Unit = {
 
       println("-------------------------------------------")
@@ -74,7 +88,7 @@ class MachineController extends Product{
         if (input >= coke.productPrice && input < sprite.productPrice) {
 
           println("(메뉴) 1. " + coke.productName + " : (*), 2. " + sprite.productName + " : ( )\n")
-          println("(재고) 1. " + coke.productName + ": " + coke.productStock + "개,   2. " + sprite.productName  + " : " + sprite.productStock + "개\n")
+          println("(재고) 1. " + coke.productName + ": " + coke.productStock + "개,   2. " + sprite.productName + " : " + sprite.productStock + "개\n")
           println("-------------------------------------------")
           println("메뉴를 선택해 주세요.")
         }
@@ -82,7 +96,7 @@ class MachineController extends Product{
         else if (input >= sprite.productPrice) {
 
           println("(메뉴) 1. " + coke.productName + " : (*), 2. " + sprite.productName + " : (*)\n")
-          println("(재고) 1. " + coke.productName + ": " + coke.productStock + "개,   2. " + sprite.productName  + " : " + sprite.productStock + "개\n")
+          println("(재고) 1. " + coke.productName + ": " + coke.productStock + "개,   2. " + sprite.productName + " : " + sprite.productStock + "개\n")
           println("-------------------------------------------")
           println("메뉴를 선택해 주세요.")
 
@@ -96,9 +110,9 @@ class MachineController extends Product{
 
     }
 
-
-    // 상품 구매 시도
-
+*/
+      // 상품 구매 시도
+      /*
     def purchase(select: Int, input: Int) { //select : 선택한 메뉴 번호, input: 받은돈
 
       var output = 0 // 잔돈
@@ -124,7 +138,7 @@ class MachineController extends Product{
         var numOfSelection = num
         var priceOfSelection = price
 
-        if (nameOfSelection == coke.productName)  numOfSelection = coke.productStock
+        if (nameOfSelection == coke.productName) numOfSelection = coke.productStock
         else if (nameOfSelection == sprite.productName) numOfSelection = sprite.productStock
 
         if (input < priceOfSelection) {
@@ -145,7 +159,7 @@ class MachineController extends Product{
 
             output = input - priceOfSelection
 
-            if (nameOfSelection == coke.productName) this.numOfCoke= this.numOfCoke- 1
+            if (nameOfSelection == coke.productName) this.numOfCoke = this.numOfCoke - 1
             else if (nameOfSelection == sprite.productName) this.numOfSprite = this.numOfSprite - 1
 
             stockCheck(coke.productStock, sprite.productStock)
@@ -231,14 +245,16 @@ class MachineController extends Product{
 
     }
 
-
-    // 재고 처리
-
+*/
+      // 재고 처리
+      /*
     def stockCheck(a: Int, b: Int): Unit = {
 
       this.numOfCoke = a
       this.numOfSprite = b
 
     }
-
+    */
+    }
+  }
 }
