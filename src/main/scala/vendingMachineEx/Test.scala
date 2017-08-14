@@ -83,24 +83,26 @@ class Test extends Product{
 
       println("-------------------------------------------")
 
-      var selection = scala.io.StdIn.readInt()
+      var selection = scala.io.StdIn.readLine()
       purchase(selection, input)
     }
 
   }
 
 
-  def purchase(select: Int, input: Int) { //select : 선택한 메뉴 번호, input: 받은돈
+  def purchase(select: Any, input: Int) { //select : 선택한 메뉴 번호, input: 받은돈
 
     var output = 0 // 잔돈
 
-    def matchMenu(x: Int): Any = x match {
+    def matchMenu(x: Any): Any = x match {
 
       case 1 => isEnough(input, coke.productName, numOfCoke, coke.productPrice)
 
       case 2 => isEnough(input, sprite.productName, numOfSprite , sprite.productPrice)
 
-      case _ => println("잘못 입력 하셨습니다.")
+      case _ => { println("잘못 입력 하셨습니다. 다시 선택해 주세요.")
+                   showMenu(input)
+                 }
 
     }
 
