@@ -55,8 +55,7 @@ class Test extends Product {
       println("(메뉴) 1. " + coke.productName + " : ( ), 2. " + sprite.productName + " : ( )\n")
       println("(재고) 1. " + coke.productName + ": " + numOfCoke + "개,   2. " + sprite.productName + " : " + numOfSprite + "개\n")
       println("-------------------------------------------")
-      println("금액이 모자라 선택 할 수 있는 메뉴가 없습니다.\n")
-      println("돈을 더 넣어주세요.")
+      println("금액이 모자라 선택 할 수 있는 메뉴가 없습니다.\n 돈을 더 넣어주세요.")
       println("-------------------------------------------")
 
       val rest = scala.io.StdIn.readInt() //추가로 받는 돈
@@ -65,20 +64,40 @@ class Test extends Product {
     }
 
 
-    // 최소 구매 가능 금액 이상 돈을 투입한 경우, 구매가능 상품 출력
+    // 최소 구매 가능 금액 이상 돈을 투입한 경우, 재고 상태 고려한 구매가능 상품 출력
     else {
 
-      if ((input >= coke.productPrice) && (input < sprite.productPrice) && (numOfCoke != 0)) {
+      if ((input >= coke.productPrice) && (input < sprite.productPrice)) {
 
-        println("(메뉴) 1. " + coke.productName + " : (*), 2. " + sprite.productName + " : ( )\n")
+        if (numOfCoke != 0) println("(메뉴) 1. " + coke.productName + " : (*), 2. " + sprite.productName + " : ( )\n")
+
+        else {
+          println("(메뉴) 1. " + coke.productName + " : ( ), 2. " + sprite.productName + " : ( )\n")
+        }
+
         println("(재고) 1. " + coke.productName + ": " + numOfCoke + "개,   2. " + sprite.productName + " : " + numOfSprite + "개\n")
         println("-------------------------------------------")
         println("메뉴를 선택해 주세요.")
       }
 
-      else if ((input >= sprite.productPrice) && (numOfCoke != 0) && (numOfSprite != 0)) {
+      else if (input >= sprite.productPrice) {
 
-        println("(메뉴) 1. " + coke.productName + " : (*), 2. " + sprite.productName + " : (*)\n")
+        if ((numOfCoke == 0) && (numOfSprite != 0)) println("(메뉴) 1. " + coke.productName + " : ( ), 2. " + sprite.productName + " : (*)\n")
+
+        else if ((numOfCoke != 0) && (numOfSprite == 0)) println("(메뉴) 1. " + coke.productName + " : (*), 2. " + sprite.productName + " : ( )\n")
+        else if ((numOfCoke == 0) && (numOfSprite == 0)) {
+          println("(메뉴) 1. " + coke.productName + " : ( ), 2. " + sprite.productName + " : ( )\n")
+          println("-------------------------------------------")
+          println("모든 제품의 재고가 없어 판매를 종료합니다.\n")
+          println("잔돈 " + input + "을 가져가세요.")
+          println("-------------------------------------------")
+          System.exit(1)
+        }
+
+        else {
+          println("(메뉴) 1. " + coke.productName + " : (*), 2. " + sprite.productName + " : (*)\n")
+        }
+
         println("(재고) 1. " + coke.productName + ": " + numOfCoke + "개,   2. " + sprite.productName + " : " + numOfSprite + "개\n")
         println("-------------------------------------------")
         println("메뉴를 선택해 주세요.")
@@ -95,7 +114,7 @@ class Test extends Product {
 
 
   // 상품 구매 시도
-  def purchase(selection: Int, input: Int) { //select : 선택한 메뉴 번호, input: 받은돈
+  def purchase(selection: Int, input: Int) {
 
     var passed = input
     var output = 0 // 잔돈
@@ -111,9 +130,9 @@ class Test extends Product {
         showMenu(input)
       }
     }
+
     matchMenu(selection)
   }
-
 
 
   // 최소 구매 가능 금액과 비교
@@ -126,6 +145,7 @@ class Test extends Product {
     }
 
     else {
+      println("-------------------------------------------")
       println("\n" + nameOfSelection + "를 선택하셨습니다.\n")
 
       if (numOfSelection <= 0) {
@@ -195,8 +215,10 @@ class Test extends Product {
         println("안녕히 가세요.\n")
       }
 
-      case "n" => showMenu(output)
-
+      case "n" => {
+        showMenu(output)
+        println(output)
+      }
       case _ => {
         println("잘못 입력하셨습니다.")
         changeAsk(output)
@@ -206,7 +228,6 @@ class Test extends Product {
 
 
   // 재고 처리
-
   def stockCheck(nameOfSelection: String): Unit = {
 
     if (nameOfSelection == coke.productName) this.numOfCoke = this.numOfCoke - 1
