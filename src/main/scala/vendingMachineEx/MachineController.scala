@@ -5,11 +5,11 @@ class MachineController {
 
   def control: Unit = {
 
-    val test = new Test
+    val vendingMachine = new VendingMachine
 
     while (true) {
 
-      test.inputCheck(test.inputMoney())
+      vendingMachine.inputCheck(vendingMachine.inputMoney())
 
 
     }

@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f380e447-a70e-46f6-9e5c-7fefddfd9393" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/scala-2.12/classes/VendingMachineEx/machineController.class" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/VendingMachineEx/machineController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/scala-2.12/classes/vendingMachineEx/StartVendingMachine$.class" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/vendingMachineEx/StartVendingMachine$.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/scala-2.12/classes/vendingMachineEx/Test.class" afterPath="$PROJECT_DIR$/target/scala-2.12/classes/vendingMachineEx/Test.class" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/scala-2.12/classes/vendingMachineEx/Test.class" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/scala/vendingMachineEx/Test.scala" afterPath="$PROJECT_DIR$/src/main/scala/vendingMachineEx/VendingMachine.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/vendingMachineEx/MachineController.scala" afterPath="$PROJECT_DIR$/src/main/scala/vendingMachineEx/MachineController.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/vendingMachineEx/StartVendingMachine.scala" afterPath="$PROJECT_DIR$/src/main/scala/vendingMachineEx/StartVendingMachine.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/vendingMachineEx/Test.scala" afterPath="$PROJECT_DIR$/src/main/scala/vendingMachineEx/Test.scala" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -33,8 +32,8 @@
           <file leaf-file-name="StartVendingMachine.scala" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/scala/vendingMachineEx/StartVendingMachine.scala">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="255">
-                  <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+                <state relative-caret-position="240">
+                  <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -54,15 +53,17 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="Test.scala" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/scala/vendingMachineEx/Test.scala">
+          <file leaf-file-name="VendingMachine.scala" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/scala/vendingMachineEx/VendingMachine.scala">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="180">
-                  <caret line="12" column="30" lean-forward="false" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+                <state relative-caret-position="830">
+                  <caret line="130" column="0" lean-forward="true" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
                   <folding>
-                    <element signature="e#697#949#0" expanded="false" />
-                    <element signature="e#4829#5372#0" expanded="false" />
-                    <element signature="e#6205#6444#0" expanded="false" />
+                    <element signature="e#659#911#0" expanded="false" />
+                    <element signature="e#3889#4593#0" expanded="false" />
+                    <element signature="e#5131#5940#0" expanded="false" />
+                    <marker date="1502696622000" expanded="false" signature="4632:5125" ph="{...}" />
+                    <marker date="1502696622000" expanded="false" signature="5994:6174" ph="{...}" />
                   </folding>
                 </state>
               </provider>
@@ -107,14 +108,14 @@
         <option value="$PROJECT_DIR$/src/main/scala/VendingMachineEx/Product.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/VendingMachineEx/VendingMachine.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/VendingMachineEx/machineController.scala" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/main/scala/vendingMachineEx/VendingMachine.java" />
         <option value="$PROJECT_DIR$/src/main/scala/vendingMachineEx/Menu.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/vendingMachineEx/Product.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/vendingMachineEx/VendingMachine.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/vendingMachineEx/Test.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/vendingMachineEx/StartVendingMachine.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/vendingMachineEx/MachineController.scala" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/main/scala/vendingMachineEx/VendingMachine.scala" />
       </list>
     </option>
   </component>
@@ -467,13 +468,13 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/vendingMachineEx/Test.scala</url>
+          <url>file://$PROJECT_DIR$/src/main/scala/vendingMachineEx/VendingMachine.scala</url>
           <line>7</line>
           <properties />
-          <option name="timeStamp" value="10" />
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="11" />
+      <option name="time" value="13" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -527,16 +528,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/project/VendingMachineEx/VendingMachine.scala" />
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="435">
-            <caret line="29" column="51" lean-forward="false" selection-start-line="29" selection-start-column="51" selection-end-line="29" selection-end-column="51" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/vendingMachineEx/Product.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -553,7 +544,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/vendingMachineEx/Test.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/vendingMachineEx/VendingMachine.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
@@ -569,6 +560,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="960">
+            <caret line="78" column="17" lean-forward="true" selection-start-line="78" selection-start-column="17" selection-end-line="78" selection-end-column="17" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/vendingMachineEx/MachineController.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -577,22 +579,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/vendingMachineEx/Test.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/vendingMachineEx/VendingMachine.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="30" lean-forward="false" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+        <state relative-caret-position="830">
+          <caret line="130" column="0" lean-forward="true" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
           <folding>
-            <element signature="e#697#949#0" expanded="false" />
-            <element signature="e#4829#5372#0" expanded="false" />
-            <element signature="e#6205#6444#0" expanded="false" />
+            <element signature="e#659#911#0" expanded="false" />
+            <element signature="e#3889#4593#0" expanded="false" />
+            <element signature="e#5131#5940#0" expanded="false" />
+            <marker date="1502696622000" expanded="false" signature="4632:5125" ph="{...}" />
+            <marker date="1502696622000" expanded="false" signature="5994:6174" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/vendingMachineEx/StartVendingMachine.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        <state relative-caret-position="240">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
         </state>
       </provider>

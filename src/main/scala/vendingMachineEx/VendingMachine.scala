@@ -1,10 +1,10 @@
 package vendingMachineEx
 
-class Test extends Product {
+class VendingMachine extends Product{
 
   val output = 0 // 잔돈 초기화
 
-  // 처음 시작화면 출력, 돈 투입 시도
+
   def inputMoney(): Int = {
 
     println("\n-------------------------------------------")
@@ -22,7 +22,7 @@ class Test extends Product {
   }
 
 
-  // 투입된 값이 돈인지 메뉴인지 체크
+
   def inputCheck(isMoney: Int) = isMoney match {
 
     case 1 => println(" \n돈을 먼저 넣어주세요.")
@@ -39,7 +39,7 @@ class Test extends Product {
   }
 
 
-  // 현재 투입된 돈으로 구매 할 수 있는 상품 출력
+
   def showMenu(input: Int): Unit = {
 
     println("-------------------------------------------")
@@ -48,7 +48,6 @@ class Test extends Product {
     println("-------------------------------------------\n")
 
 
-    // 최소 구매 가능 금액보다 작은 경우 추가 투입 요구
     if (input < coke.productPrice) {
 
       println("(메뉴) 1. " + coke.productName + " : ( ), 2. " + sprite.productName + " : ( )\n")
@@ -63,7 +62,6 @@ class Test extends Product {
     }
 
 
-    // 최소 구매 가능 금액 이상 돈을 투입한 경우, 재고 상태 고려한 구매가능 상품 출력
     else {
 
       if ((input >= coke.productPrice) && (input < sprite.productPrice)) {
@@ -110,11 +108,10 @@ class Test extends Product {
   }
 
 
-  // 상품 구매 시도
+
   def purchase(selection: Int, input: Int) {
 
     var passed = input
-    var output = 0 // 잔돈
 
     def matchMenu(passed: Int): Any = passed match {
 
@@ -132,8 +129,7 @@ class Test extends Product {
   }
 
 
-  // 최소 구매 가능 금액과 비교
-  // 재고 상태 확인
+
   def isEnough(input: Int, nameOfSelection: String, numOfSelection: Int, priceOfSelection: Int): Unit = {
 
     if (input < priceOfSelection) {
@@ -162,7 +158,7 @@ class Test extends Product {
   }
 
 
-  // 금액 추가 여부 확인
+
   def addMoney(input: Int): Unit = {
 
     println("돈을 추가 하시겠습니까? (Y/N)")
@@ -190,7 +186,7 @@ class Test extends Product {
   }
 
 
-  // 잔돈 반환 처리
+
   def changeAsk(output: Int): Unit = {
 
     if (output > 0) {
@@ -227,7 +223,7 @@ class Test extends Product {
   }
 
 
-  // 재고 처리
+
   def stockCheck(nameOfSelection: String): Unit = {
 
     if (nameOfSelection == coke.productName) this.numOfCoke = this.numOfCoke - 1
