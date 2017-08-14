@@ -1,8 +1,10 @@
 package vendingMachineEx
 
-class Test extends Product{
+class Test extends Product {
 
+  val output = 0 // 잔돈 초기화
 
+  // 처음 시작화면 출력, 돈 투입 시도
   def inputMoney(): Int = {
 
     println("\n-------------------------------------------")
@@ -19,14 +21,16 @@ class Test extends Product{
 
   }
 
+
+  // 투입된 값이 돈인지 메뉴인지 체크
   def inputCheck(isMoney: Int) = isMoney match {
 
     case 1 => println(" \n돈을 먼저 넣어주세요.")
 
     case 2 => println("\n돈을 먼저 넣어주세요.")
 
-    case input: Int => {
-      if (input < 0) println("돈을 넣어주세요.")
+    case isMoney: Int => {
+      if (isMoney < 0) println("돈을 넣어주세요.")
       else showMenu(isMoney)
     }
 
@@ -35,6 +39,7 @@ class Test extends Product{
   }
 
 
+  // 현재 투입된 돈으로 구매 할 수 있는 상품 출력
   def showMenu(input: Int): Unit = {
 
     println("-------------------------------------------")
@@ -61,7 +66,6 @@ class Test extends Product{
 
 
     // 최소 구매 가능 금액 이상 돈을 투입한 경우, 구매가능 상품 출력
-
     else {
 
       if (input >= coke.productPrice && input < sprite.productPrice) {
@@ -83,47 +87,40 @@ class Test extends Product{
 
       println("-------------------------------------------")
 
-      var selection = scala.io.StdIn.readLine()
+      var selection = scala.io.StdIn.readInt()
       purchase(selection, input)
     }
 
   }
 
 
-  def purchase(select: Any, input: Int) { //select : 선택한 메뉴 번호, input: 받은돈
+  // 상품 구매 시도
+  def purchase(selection: Int, input: Int) { //select : 선택한 메뉴 번호, input: 받은돈
 
+    var passed = input
     var output = 0 // 잔돈
 
-    def matchMenu(x: Any): Any = x match {
+    def matchMenu(passed: Int): Any = passed match {
 
       case 1 => isEnough(input, coke.productName, numOfCoke, coke.productPrice)
 
-      case 2 => isEnough(input, sprite.productName, numOfSprite , sprite.productPrice)
+      case 2 => isEnough(input, sprite.productName, numOfSprite, sprite.productPrice)
 
-      case _ => { println("잘못 입력 하셨습니다. 다시 선택해 주세요.")
-                   showMenu(input)
-                 }
-
+      case _ => {
+        println("잘못 입력 하셨습니다. 다시 선택해 주세요.")
+        showMenu(input)
+      }
     }
 
 
     // 최소 구매 가능 금액과 비교
     // 재고 상태 확인
 
-    def isEnough(input: Int, name: String, num: Int, price: Int): Unit = {
-
-
-      var nameOfSelection = name
-      var numOfSelection = num
-      var priceOfSelection = price
-
-      if (nameOfSelection == coke.productName) numOfSelection = numOfCoke
-      else if (nameOfSelection == sprite.productName) numOfSelection = numOfSprite
+    def isEnough(input: Int, nameOfSelection: String, numOfSelection: Int, priceOfSelection: Int): Unit = {
 
       if (input < priceOfSelection) {
         println("\n투입한 금액이 부족하여 선택 할 수 없습니다.\n")
         addMoney(input)
-        //showMenu(input2)
       }
 
       else {
@@ -135,30 +132,20 @@ class Test extends Product{
         }
 
         else {
-
           output = input - priceOfSelection
-
-          if (nameOfSelection == coke.productName) this.numOfCoke = this.numOfCoke - 1
-          else if (nameOfSelection == sprite.productName) this.numOfSprite = this.numOfSprite - 1
-
-          stockCheck(numOfCoke, numOfSprite )
-
+          stockCheck(nameOfSelection)
           println("결제가 정상적으로 처리되었습니다.")
           changeAsk(output)
-
         }
-      }
 
+      }
     }
 
-    matchMenu(select)
+    matchMenu(selection)
 
 
     // 금액 추가 확인
-
     def addMoney(input: Int): Unit = {
-
-      var passed = input
 
       println("돈을 추가 하시겠습니까? (Y/N)")
       println("-------------------------------------------\n")
@@ -173,9 +160,7 @@ class Test extends Product{
 
           var addMoney = scala.io.StdIn.readInt
 
-          passed = passed + addMoney // error :: addMoney : reassignment to val
-
-          showMenu(passed)
+          showMenu(input + addMoney)
         }
 
         case "n" => changeAsk(passed)
@@ -185,13 +170,11 @@ class Test extends Product{
 
     }
 
-    // 잔돈 반환 처리
 
+    // 잔돈 반환 처리
     def changeAsk(output: Int): Unit = {
 
-      var changeMoney = output
-
-      if (changeMoney > 0) {
+      if (output > 0) {
 
         println("남은 잔액은 " + output + "원 입니다.\n")
         println("잔돈을 반환 하시겠습니까?(Y/N)")
@@ -199,35 +182,35 @@ class Test extends Product{
 
         var changeSelect = scala.io.StdIn.readLine()
         change(changeSelect)
-
       }
 
-      else if (changeMoney == 0) {
-        println("판매를 종료합니다. 안녕히 가세요.")
-      }
+      else if (output == 0) println("판매를 종료합니다. 안녕히 가세요.")
 
 
       def change(changeSelect: String): Any = changeSelect match {
 
         case "y" => {
-          println("\n판매를 종료합니다. 잔돈 " + changeMoney + "원을 가져가세요.")
+          println("\n판매를 종료합니다. 잔돈 " + output + "원을 가져가세요.")
           println("안녕히 가세요.")
-          changeMoney = 0
         }
 
-        case "n" => showMenu(changeMoney)
+        case "n" => showMenu(output)
 
-        case _ => "잘못 입력하셨습니다."
-
+        case _ => {
+          println("잘못 입력하셨습니다.")
+          changeAsk(output)
+        }
       }
     }
 
   }
 
-  def stockCheck(a: Int, b: Int): Unit = {
+  // 재고 처리
 
-    this.numOfCoke = a
-    this.numOfSprite = b
+  def stockCheck(nameOfSelection: String): Unit = {
+
+    if (nameOfSelection == coke.productName) this.numOfCoke = this.numOfCoke - 1
+    else if (nameOfSelection == sprite.productName) this.numOfSprite = this.numOfSprite - 1
 
   }
 }

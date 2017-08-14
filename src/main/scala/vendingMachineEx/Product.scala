@@ -7,8 +7,8 @@ class Product {
 
   val rand = Random
 
-  var randomCoke = rand.nextInt(20)
-  var randomSprite = rand.nextInt(20)
+  var randomCoke = rand.nextInt(10)
+  var randomSprite = rand.nextInt(10)
 
   case class Menu(productName: String, productStock: Int, productPrice: Int) // 이름, 재고량, 가격
 
