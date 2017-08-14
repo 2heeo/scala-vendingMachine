@@ -5,9 +5,10 @@ object StartVendingMachine {
 
   def main(args: Array[String]): Unit = {
 
-    val vendingMachine = new MachineController
+    val machineController = new MachineController
+    val product = new Product
 
-    vendingMachine.control
+    machineController.control
 
   }
 

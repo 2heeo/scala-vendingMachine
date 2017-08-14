@@ -9,7 +9,8 @@ class MachineController {
 
     while (true) {
 
-    test.inputCheck(test.inputMoney())
+      test.inputCheck(test.inputMoney())
+
 
     }
   }
