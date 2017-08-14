@@ -111,99 +111,99 @@ class Test extends Product {
         showMenu(input)
       }
     }
+    matchMenu(selection)
+  }
 
 
-    // 최소 구매 가능 금액과 비교
-    // 재고 상태 확인
 
-    def isEnough(input: Int, nameOfSelection: String, numOfSelection: Int, priceOfSelection: Int): Unit = {
+  // 최소 구매 가능 금액과 비교
+  // 재고 상태 확인
+  def isEnough(input: Int, nameOfSelection: String, numOfSelection: Int, priceOfSelection: Int): Unit = {
 
-      if (input < priceOfSelection) {
-        println("\n투입한 금액이 부족하여 선택 할 수 없습니다.\n")
-        addMoney(input)
+    if (input < priceOfSelection) {
+      println("\n투입한 금액이 부족하여 선택 할 수 없습니다.\n")
+      addMoney(input)
+    }
+
+    else {
+      println("\n" + nameOfSelection + "를 선택하셨습니다.\n")
+
+      if (numOfSelection <= 0) {
+        println("재고가 없어 구매 할 수 없습니다.")
+        showMenu(input)
       }
 
       else {
-        println("\n" + nameOfSelection + "를 선택하셨습니다.\n")
-
-        if (numOfSelection <= 0) {
-          println("재고가 없어 구매 할 수 없습니다.")
-          showMenu(input)
-        }
-
-        else {
-          output = input - priceOfSelection
-          stockCheck(nameOfSelection)
-          println("결제가 정상적으로 처리되었습니다.")
-          changeAsk(output)
-        }
-
-      }
-    }
-
-    matchMenu(selection)
-
-
-    // 금액 추가 확인
-    def addMoney(input: Int): Unit = {
-
-      println("돈을 추가 하시겠습니까? (Y/N)")
-      println("-------------------------------------------\n")
-
-      val addSelect = scala.io.StdIn.readLine
-      addAsk(addSelect)
-
-      def addAsk(addSelect: String): Any = addSelect match {
-
-        case "y" => {
-          printf("돈을 추가해주세요.\n")
-
-          var addMoney = scala.io.StdIn.readInt
-
-          showMenu(input + addMoney)
-        }
-
-        case "n" => changeAsk(passed)
-
-        case _ => println("잘못 입력하셨습니다.")
+        //output = input - priceOfSelection
+        stockCheck(nameOfSelection)
+        println("결제가 정상적으로 처리되었습니다.")
+        changeAsk(input - priceOfSelection)
       }
 
     }
+  }
 
 
-    // 잔돈 반환 처리
-    def changeAsk(output: Int): Unit = {
+  // 금액 추가 여부 확인
+  def addMoney(input: Int): Unit = {
 
-      if (output > 0) {
+    println("돈을 추가 하시겠습니까? (Y/N)")
+    println("-------------------------------------------\n")
 
-        println("남은 잔액은 " + output + "원 입니다.\n")
-        println("잔돈을 반환 하시겠습니까?(Y/N)")
-        println("-------------------------------------------\n")
+    val addSelect = scala.io.StdIn.readLine
+    addAsk(addSelect)
 
-        var changeSelect = scala.io.StdIn.readLine()
-        change(changeSelect)
+    def addAsk(addSelect: String): Any = addSelect match {
+
+      case "y" => {
+        printf("돈을 추가해주세요.\n")
+        val addMoney = scala.io.StdIn.readInt
+        showMenu(input + addMoney)
       }
 
-      else if (output == 0) println("판매를 종료합니다. 안녕히 가세요.")
+      case "n" => changeAsk(input)
 
-
-      def change(changeSelect: String): Any = changeSelect match {
-
-        case "y" => {
-          println("\n판매를 종료합니다. 잔돈 " + output + "원을 가져가세요.")
-          println("안녕히 가세요.")
-        }
-
-        case "n" => showMenu(output)
-
-        case _ => {
-          println("잘못 입력하셨습니다.")
-          changeAsk(output)
-        }
+      case _ => {
+        println("잘못 입력하셨습니다.")
+        addMoney(input)
       }
     }
 
   }
+
+
+  // 잔돈 반환 처리
+  def changeAsk(output: Int): Unit = {
+
+    if (output > 0) {
+
+      println("남은 잔액은 " + output + "원 입니다.\n")
+      println("잔돈을 반환 하시겠습니까?(Y/N)")
+      println("-------------------------------------------\n")
+
+      val changeSelect = scala.io.StdIn.readLine()
+      change(changeSelect)
+    }
+
+    else if (output == 0) println("판매를 종료합니다. 안녕히 가세요.")
+
+
+    def change(changeSelect: String): Any = changeSelect match {
+
+      case "y" => {
+        println("\n판매를 종료합니다. 잔돈 " + output + "원을 가져가세요.")
+        println("안녕히 가세요.\n")
+      }
+
+      case "n" => showMenu(output)
+
+      case _ => {
+        println("잘못 입력하셨습니다.")
+        changeAsk(output)
+      }
+    }
+  }
+
 
   // 재고 처리
 
