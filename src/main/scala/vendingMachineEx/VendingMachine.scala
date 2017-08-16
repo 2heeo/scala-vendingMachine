@@ -1,6 +1,6 @@
 package vendingMachineEx
 
-class VendingMachine extends Product{
+class VendingMachine (product: Product) {
 
   val output = 0 // 잔돈 초기화
 
@@ -9,8 +9,8 @@ class VendingMachine extends Product{
 
     println("\n-------------------------------------------")
     println("****** 자판기 프로그램을 시작합니다! ******\n")
-    println("(메뉴) 1.콜라 : " + coke.productPrice + "원, 2.사이다 : " + sprite.productPrice + "원\n")
-    println("(재고) 1.콜라 : " + numOfCoke + "개,\t" + "2.사이다 : " + numOfSprite + "개\n")
+    println("(메뉴) 1.콜라 : " + product.coke.productPrice + "원, 2.사이다 : " + product.sprite.productPrice + "원\n")
+    println("(재고) 1.콜라 : " + product.numOfCoke + "개,\t" + "2.사이다 : " + product.numOfSprite + "개\n")
     println("*******************************************")
     println("-------------------------------------------\n")
 
@@ -48,10 +48,10 @@ class VendingMachine extends Product{
     println("-------------------------------------------\n")
 
 
-    if (input < coke.productPrice) {
+    if (input < product.coke.productPrice) {
 
-      println("(메뉴) 1. " + coke.productName + " : ( ), 2. " + sprite.productName + " : ( )\n")
-      println("(재고) 1. " + coke.productName + ": " + numOfCoke + "개,   2. " + sprite.productName + " : " + numOfSprite + "개\n")
+      println("(메뉴) 1. " + product.coke.productName + " : ( ), 2. " + product.sprite.productName + " : ( )\n")
+      println("(재고) 1. " + product.coke.productName + ": " + product.numOfCoke + "개,   2. " + product.sprite.productName + " : " + product.numOfSprite + "개\n")
       println("-------------------------------------------")
       println("금액이 모자라 선택 할 수 있는 메뉴가 없습니다.\n 돈을 더 넣어주세요.")
       println("-------------------------------------------")
@@ -64,26 +64,26 @@ class VendingMachine extends Product{
 
     else {
 
-      if ((input >= coke.productPrice) && (input < sprite.productPrice)) {
+      if ((input >= product.coke.productPrice) && (input < product.sprite.productPrice)) {
 
-        if (numOfCoke != 0) println("(메뉴) 1. " + coke.productName + " : (*), 2. " + sprite.productName + " : ( )\n")
+        if (product.numOfCoke != 0) println("(메뉴) 1. " + product.coke.productName + " : (*), 2. " + product.sprite.productName + " : ( )\n")
 
         else {
-          println("(메뉴) 1. " + coke.productName + " : ( ), 2. " + sprite.productName + " : ( )\n")
+          println("(메뉴) 1. " + product.coke.productName + " : ( ), 2. " + product.sprite.productName + " : ( )\n")
         }
 
-        println("(재고) 1. " + coke.productName + ": " + numOfCoke + "개,   2. " + sprite.productName + " : " + numOfSprite + "개\n")
+        println("(재고) 1. " + product.coke.productName + ": " + product.numOfCoke + "개,   2. " + product.sprite.productName + " : " + product.numOfSprite + "개\n")
         println("-------------------------------------------")
         println("메뉴를 선택해 주세요.")
       }
 
-      else if (input >= sprite.productPrice) {
+      else if (input >= product.sprite.productPrice) {
 
-        if ((numOfCoke == 0) && (numOfSprite != 0)) println("(메뉴) 1. " + coke.productName + " : ( ), 2. " + sprite.productName + " : (*)\n")
+        if ((product.numOfCoke == 0) && (product.numOfSprite != 0)) println("(메뉴) 1. " + product.coke.productName + " : ( ), 2. " + product.sprite.productName + " : (*)\n")
 
-        else if ((numOfCoke != 0) && (numOfSprite == 0)) println("(메뉴) 1. " + coke.productName + " : (*), 2. " + sprite.productName + " : ( )\n")
-        else if ((numOfCoke == 0) && (numOfSprite == 0)) {
-          println("(메뉴) 1. " + coke.productName + " : ( ), 2. " + sprite.productName + " : ( )\n")
+        else if ((product.numOfCoke != 0) && (product.numOfSprite == 0)) println("(메뉴) 1. " + product.coke.productName + " : (*), 2. " + product.sprite.productName + " : ( )\n")
+        else if ((product.numOfCoke == 0) && (product.numOfSprite == 0)) {
+          println("(메뉴) 1. " + product.coke.productName + " : ( ), 2. " + product.sprite.productName + " : ( )\n")
           println("-------------------------------------------")
           println("모든 제품의 재고가 없어 판매를 종료합니다.\n")
           println("잔돈 " + input + "을 가져가세요.")
@@ -92,10 +92,10 @@ class VendingMachine extends Product{
         }
 
         else {
-          println("(메뉴) 1. " + coke.productName + " : (*), 2. " + sprite.productName + " : (*)\n")
+          println("(메뉴) 1. " + product.coke.productName + " : (*), 2. " + product.sprite.productName + " : (*)\n")
         }
 
-        println("(재고) 1. " + coke.productName + ": " + numOfCoke + "개,   2. " + sprite.productName + " : " + numOfSprite + "개\n")
+        println("(재고) 1. " + product.coke.productName + ": " + product.numOfCoke + "개,   2. " + product.sprite.productName + " : " + product.numOfSprite + "개\n")
         println("-------------------------------------------")
         println("메뉴를 선택해 주세요.")
 
@@ -115,9 +115,9 @@ class VendingMachine extends Product{
 
     def matchMenu(passed: Int): Any = passed match {
 
-      case 1 => isEnough(input, coke.productName, numOfCoke, coke.productPrice)
+      case 1 => isEnough(input, product.coke.productName, product.numOfCoke, product.coke.productPrice)
 
-      case 2 => isEnough(input, sprite.productName, numOfSprite, sprite.productPrice)
+      case 2 => isEnough(input, product.sprite.productName, product.numOfSprite, product.sprite.productPrice)
 
       case _ => {
         println("잘못 입력 하셨습니다. 다시 선택해 주세요.")
@@ -226,8 +226,8 @@ class VendingMachine extends Product{
 
   def stockCheck(nameOfSelection: String): Unit = {
 
-    if (nameOfSelection == coke.productName) this.numOfCoke = this.numOfCoke - 1
-    else if (nameOfSelection == sprite.productName) this.numOfSprite = this.numOfSprite - 1
+    if (nameOfSelection == product.coke.productName) this.product.numOfCoke = this.product.numOfCoke - 1
+    else if (nameOfSelection == product.sprite.productName) this.product.numOfSprite = this.product.numOfSprite - 1
 
   }
 }

@@ -5,7 +5,9 @@ class MachineController {
 
   def control: Unit = {
 
-    val vendingMachine = new VendingMachine
+    val product = new Product
+
+    val vendingMachine = new VendingMachine(product)
 
     while (true) {
 
