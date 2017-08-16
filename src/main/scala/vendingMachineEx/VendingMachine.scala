@@ -1,6 +1,6 @@
 package vendingMachineEx
 
-class VendingMachine (product: Product) {
+class VendingMachine(product: Product) {
 
   val output = 0 // 잔돈 초기화
 
@@ -22,7 +22,6 @@ class VendingMachine (product: Product) {
   }
 
 
-
   def inputCheck(isMoney: Int) = isMoney match {
 
     case 1 => println(" \n돈을 먼저 넣어주세요.")
@@ -39,7 +38,6 @@ class VendingMachine (product: Product) {
   }
 
 
-
   def showMenu(input: Int): Unit = {
 
     println("-------------------------------------------")
@@ -53,7 +51,7 @@ class VendingMachine (product: Product) {
       println("(메뉴) 1. " + product.coke.productName + " : ( ), 2. " + product.sprite.productName + " : ( )\n")
       println("(재고) 1. " + product.coke.productName + ": " + product.numOfCoke + "개,   2. " + product.sprite.productName + " : " + product.numOfSprite + "개\n")
       println("-------------------------------------------")
-      println("금액이 모자라 선택 할 수 있는 메뉴가 없습니다.\n 돈을 더 넣어주세요.")
+      println("금액이 모자라 선택 할 수 있는 메뉴가 없습니다.\n돈을 더 넣어주세요.")
       println("-------------------------------------------")
 
       val rest = scala.io.StdIn.readInt()
@@ -108,12 +106,9 @@ class VendingMachine (product: Product) {
   }
 
 
-
   def purchase(selection: Int, input: Int) {
 
-    var passed = input
-
-    def matchMenu(passed: Int): Any = passed match {
+    selection match {
 
       case 1 => isEnough(input, product.coke.productName, product.numOfCoke, product.coke.productPrice)
 
@@ -125,9 +120,29 @@ class VendingMachine (product: Product) {
       }
     }
 
-    matchMenu(selection)
   }
 
+
+  /*
+    def purchase(selection: Int, input: Int) {
+
+      var passed = input
+
+      def matchMenu(passed: Int): Any = passed match {
+
+        case 1 => isEnough(input, product.coke.productName, product.numOfCoke, product.coke.productPrice)
+
+        case 2 => isEnough(input, product.sprite.productName, product.numOfSprite, product.sprite.productPrice)
+
+        case _ => {
+          println("잘못 입력 하셨습니다. 다시 선택해 주세요.")
+          showMenu(input)
+        }
+      }
+
+      matchMenu(selection)
+    }
+  */
 
 
   def isEnough(input: Int, nameOfSelection: String, numOfSelection: Int, priceOfSelection: Int): Unit = {
@@ -158,7 +173,6 @@ class VendingMachine (product: Product) {
   }
 
 
-
   def addMoney(input: Int): Unit = {
 
     println("돈을 추가 하시겠습니까? (Y/N)")
@@ -186,7 +200,6 @@ class VendingMachine (product: Product) {
   }
 
 
-
   def changeAsk(output: Int): Unit = {
 
     if (output > 0) {
@@ -196,31 +209,36 @@ class VendingMachine (product: Product) {
       println("-------------------------------------------")
 
       val changeSelect = scala.io.StdIn.readLine()
-      change(changeSelect)
+      //change(changeSelect)
+      changeSelect
     }
 
     else if (output == 0) println("판매를 종료합니다. 안녕히 가세요.")
 
+  }
 
-    def change(changeSelect: String): Any = changeSelect match {
 
-      case "y" => {
-        println("\n-------------------------------------------")
-        println("\n판매를 종료합니다. 잔돈 " + output + "원을 가져가세요.\n")
-        println("안녕히 가세요.")
-      }
 
-      case "n" => {
-        showMenu(output)
-      }
 
-      case _ => {
-        println("잘못 입력하셨습니다.")
-        changeAsk(output)
-      }
+  def change(changeSelect: String): Any = changeSelect match {
+
+    case "y" => {
+      println("\n-------------------------------------------")
+      println("\n판매를 종료합니다. 잔돈 " + output + "원을 가져가세요.\n")
+      println("안녕히 가세요.")
     }
 
+    case "n" => {
+      showMenu(output)
+    }
+
+    case _ => {
+      println("잘못 입력하셨습니다.")
+      changeAsk(output)
+    }
   }
+
+
 
 
 
