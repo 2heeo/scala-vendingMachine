@@ -5,17 +5,14 @@ class VendingMachine(product: Product) {
   var additionalMoney = 0
   var output = 0 // 잔돈 초기화
 
-  var isBuyableCoke = "*"
-  var isBuyableSprite = "*"
+  var isBuyableCoke = " "
+  var isBuyableSprite = " "
 
   var selectionOfMenu: Boolean = true
   var isLackOfMoney: Boolean = false
   var selectToReturnChange = "y"
 
-
-
   def receivedValueIsMoney(receivedMoney: Int): Boolean = receivedMoney match {
-
     case 1 => {
       println(" \n돈을 먼저 넣어주세요.");
       false
@@ -40,9 +37,6 @@ class VendingMachine(product: Product) {
 
 
   def checkSelectableProducts(receivedMoney: Int): Unit = {
-    isBuyableCoke = " "
-    isBuyableSprite = " "
-
     if((receivedMoney >= product.coke.productPrice) && product.numOfCoke > 0) {
       isBuyableCoke = "*"
     }
@@ -53,7 +47,6 @@ class VendingMachine(product: Product) {
   }
 
   def showBuyableProducts(input: Int): Unit = {
-
     println("-------------------------------------------")
     println("(메뉴) 1. " + product.coke.productName + " : (" + isBuyableCoke + "), 2. " + product.sprite.productName + " : (" + isBuyableSprite + ")\n")
     println("(재고) 1. " + product.coke.productName + ": " + product.numOfCoke + "개,   2. " + product.sprite.productName + " : " + product.numOfSprite + "개")
@@ -62,7 +55,6 @@ class VendingMachine(product: Product) {
   }
 
   def selectToBuyProduct(receivedMoney: Int, selectionOfProduct: Int): Unit = {
-
     selectionOfProduct match {
 
       case 1 => {
@@ -85,7 +77,6 @@ class VendingMachine(product: Product) {
   }
 
   def isMoneyEnoughToBuy(receivedMoney: Int, nameOfSelection: String, numOfSelection: Int, priceOfSelection: Int): Unit = {
-
     if (receivedMoney < priceOfSelection) {
       println("\n-------------------------------------------")
       println("투입한 금액이 부족하여 선택 할 수 없습니다.\n")
@@ -131,7 +122,6 @@ class VendingMachine(product: Product) {
 
 
   def askContinueBuying(output: Int): Unit = {
-
     if (output > 0) {
       println("남은 잔액은 " + output + "원 입니다.\n")
       println("잔돈을 반환 하시겠습니까?(Y/N)")
@@ -147,7 +137,6 @@ class VendingMachine(product: Product) {
 
 
   def hereIsYourChange(selecToGetChange: String): Any = selecToGetChange match {
-
     case "y" => {
       println("\n판매를 종료합니다. 잔돈 " + output + "원을 가져가세요.\n")
       println("안녕히 가세요.")
@@ -168,7 +157,6 @@ class VendingMachine(product: Product) {
 
 
   def reduceStocksOfProducts(nameOfSelection: String): Unit = {
-
     if (nameOfSelection == product.coke.productName) this.product.numOfCoke = this.product.numOfCoke - 1
     else if (nameOfSelection == product.sprite.productName) this.product.numOfSprite = this.product.numOfSprite - 1
 
