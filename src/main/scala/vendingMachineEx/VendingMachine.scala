@@ -40,43 +40,17 @@ class VendingMachine(product: Product) {
 
 
   def checkSelectableProducts(receivedMoney: Int): Unit = {
+    isBuyableCoke = " "
+    isBuyableSprite = " "
 
-    if (receivedMoney < product.coke.productPrice) {
-      isBuyableCoke = " "
-      isBuyableSprite = " "
+    if((receivedMoney >= product.coke.productPrice) && product.numOfCoke > 0) {
+      isBuyableCoke = "*"
     }
 
-    else {
-
-      if ((receivedMoney >= product.coke.productPrice) && (receivedMoney < product.sprite.productPrice)) {
-        isBuyableCoke = "*"
-        isBuyableSprite = " "
-      }
-
-      else if (receivedMoney >= product.sprite.productPrice) {
-
-        if ((product.numOfCoke == 0) && (product.numOfSprite != 0)) {
-          isBuyableCoke = " "
-          isBuyableSprite = "*"
-        }
-
-        else if ((product.numOfCoke != 0) && (product.numOfSprite == 0)) {
-          isBuyableCoke = "*"
-          isBuyableSprite = " "
-        }
-
-        else if ((product.numOfCoke == 0) && (product.numOfSprite == 0)) {
-          isBuyableCoke = " "
-          isBuyableSprite = " "
-        }
-      }
-      else {
-        isBuyableCoke = "*"
-        isBuyableSprite = "*"
-      }
+    if((receivedMoney >= product.sprite.productPrice) && product.numOfSprite > 0) {
+      isBuyableSprite = "*"
     }
   }
-
 
   def showBuyableProducts(input: Int): Unit = {
 
@@ -86,7 +60,6 @@ class VendingMachine(product: Product) {
     println("-------------------------------------------")
 
   }
-
 
   def selectToBuyProduct(receivedMoney: Int, selectionOfProduct: Int): Unit = {
 
@@ -110,7 +83,6 @@ class VendingMachine(product: Product) {
     }
 
   }
-
 
   def isMoneyEnoughToBuy(receivedMoney: Int, nameOfSelection: String, numOfSelection: Int, priceOfSelection: Int): Unit = {
 
@@ -138,9 +110,7 @@ class VendingMachine(product: Product) {
     }
   }
 
-
   def askAdditionalMoney(receivedMoney: Int, selectToAddMoney: String): Any = selectToAddMoney match {
-
     case "y" => {
       printf("\n돈을 추가해주세요.\n")
 
@@ -148,6 +118,7 @@ class VendingMachine(product: Product) {
       this.additionalMoney = addedMoney
       selectionOfMenu = true
 
+      checkSelectableProducts(receivedMoney)
     }
 
     case "n" => askContinueBuying(receivedMoney)
